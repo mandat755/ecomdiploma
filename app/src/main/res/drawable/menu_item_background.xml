@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/orange" /> <!-- Білий фон для кнопок -->
+    <corners android:radius="8dp" /> <!-- Округлені кути -->
+    <elevation android:value="2dp" /> <!-- Додаємо невелику тінь для об'ємного ефекту -->
+    <stroke android:width="1dp" android:color="#cccccc"/> <!-- Тонка межа навколо кнопок -->
+</shape>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="orange">#fb774b</color>
+    <color name="grey">#e3e6f3</color>
+    <color name="textColorPrimary">#000000</color> <!-- чорний текст для світлої теми -->
+    <color name="background_color">#fff8f0</color>
+    <color name="red">#ff0000</color>
+    <color name="green">#25EB02</color>
+    <color name="gray">#414341</color>
+    <color name="button_pay_color">#FFFFFFFF</color>
+    <color name="auth_background_color">#fff8f0</color>
+</resources>

@@ -1,0 +1,165 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/authorizationFragment">
+
+    <!-- Фрагмент авторизації -->
+    <fragment
+        android:id="@+id/authorizationFragment"
+        android:name="com.example.ecomdiploma.presentation.fragments.AuthorizationFragment"
+        android:label="@null"
+        tools:layout="@layout/fragment_authorization">
+        <action
+            android:id="@+id/action_authorizationFragment_to_MainFragment"
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/authorizationFragment"
+            app:popUpToInclusive="true" /> <!-- Видаляємо з стеку -->
+    </fragment>
+
+    <!-- MainFragment -->
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.ecomdiploma.presentation.fragments.mainfrag.MainFragment"
+        android:label="Main Fragment"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_MainFragment_to_contactFragment"
+            app:destination="@id/nav_contact"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_MainFragment_to_aboutInfoFragment"
+            app:destination="@id/nav_about_info"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_home_to_nav_blog"
+            app:destination="@id/nav_blog"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_home_to_shopFragment"
+            app:destination="@id/nav_shop"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_home_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+
+    <!-- Фрагмент Contact -->
+    <fragment
+        android:id="@+id/nav_contact"
+        android:name="com.example.ecomdiploma.presentation.fragments.contactfrag.ContactFragment"
+        android:label="Contact Fragment"
+        tools:layout="@layout/fragment_contact">
+        <action
+            android:id="@+id/action_contactFragment_to_MainFragment"
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/nav_contact"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_contactFragment_to_aboutInfoFragment"
+            app:destination="@id/nav_about_info"
+            app:popUpTo="@id/nav_contact"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_contactFragment_to_nav_blog"
+            app:destination="@id/nav_blog"
+            app:popUpTo="@id/nav_contact"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_contactFragment_to_shopFragment"
+            app:destination="@id/nav_shop"
+            app:popUpTo="@id/nav_contact"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_about_info"
+        android:name="com.example.ecomdiploma.presentation.fragments.aboutfrag.AboutInfoFragment"
+        android:label="fragment_about_info"
+        tools:layout="@layout/fragment_about_info" >
+        <action
+            android:id="@+id/action_aboutInfoFragment_to_MainFragment"
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/nav_about_info"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_aboutInfoFragment_to_contactFragment"
+            app:destination="@id/nav_contact"
+            app:popUpTo="@id/nav_about_info"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_about_info_to_nav_blog"
+            app:destination="@id/nav_blog"
+            app:popUpTo="@id/nav_about_info"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_about_info_to_shopFragment"
+            app:destination="@id/nav_shop"
+            app:popUpTo="@id/nav_about_info"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_blog"
+        android:name="com.example.ecomdiploma.presentation.fragments.blogfrag.BlogFragment"
+        android:label="fragment_blog"
+        tools:layout="@layout/fragment_blog" >
+        <action
+            android:id="@+id/action_nav_blog_to_nav_home"
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/nav_blog"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_blog_to_nav_about_info"
+            app:destination="@id/nav_about_info"
+            app:popUpTo="@id/nav_blog"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_blog_to_contactFragment"
+            app:destination="@id/nav_contact"
+            app:popUpTo="@id/nav_blog"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_blog_to_shopFragment"
+            app:destination="@id/nav_shop"
+            app:popUpTo="@id/nav_blog"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_shop"
+        android:name="com.example.ecomdiploma.presentation.fragments.shopfrag.ShopFragment"
+        android:label="fragment_shop"
+        tools:layout="@layout/fragment_shop" >
+        <action
+            android:id="@+id/action_shopFragment_to_nav_home"
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/nav_shop"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_shopFragment_to_nav_blog"
+            app:destination="@id/nav_blog"
+            app:popUpTo="@id/nav_shop"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_shopFragment_to_nav_about_info"
+            app:destination="@id/nav_about_info"
+            app:popUpTo="@id/nav_shop"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_shopFragment_to_contactFragment"
+            app:destination="@id/nav_contact"
+            app:popUpTo="@id/nav_shop"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_nav_shop_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.ecomdiploma.presentation.fragments.prodfrag.ProductDetailFragment"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" />
+
+
+</navigation>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:title="Home"
+        android:icon="@drawable/baseline_home_24"
+        android:iconTint="@android:color/white"
+        android:textSize="18sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:itemBackground="@drawable/menu_item_background"
+        android:elevation="4dp" /> <!-- Додаємо відступи для кращого вигляду -->
+
+    <item
+        android:id="@+id/nav_shop"
+        android:title="Shop"
+        android:icon="@drawable/baseline_shopping_cart_24"
+        android:iconTint="@android:color/white"
+        android:textSize="18sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:itemBackground="@drawable/menu_item_background"
+        android:elevation="4dp"/>
+
+    <item
+        android:id="@+id/nav_blog"
+        android:title="Blog"
+        android:icon="@drawable/baseline_library_books_24"
+        android:iconTint="@android:color/white"
+        android:textSize="18sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:itemBackground="@drawable/menu_item_background"
+        android:elevation="4dp"/>
+
+    <item
+        android:id="@+id/nav_about_info"
+        android:title="About"
+        android:icon="@drawable/baseline_info_24"
+        android:iconTint="@android:color/white"
+        android:textSize="18sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:itemBackground="@drawable/menu_item_background"
+        android:elevation="4dp"/>
+
+    <item
+        android:id="@+id/nav_contact"
+        android:title="Contact Us"
+        android:icon="@drawable/baseline_mail_24"
+        android:iconTint="@android:color/white"
+        android:textSize="18sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:itemBackground="@drawable/menu_item_background"
+        android:elevation="4dp"/>
+</menu>

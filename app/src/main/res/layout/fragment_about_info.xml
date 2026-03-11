@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.fragments.aboutfrag.AboutInfoFragment"
+    android:padding="4dp">
+
+    <!-- ScrollView для вертикального скролінгу -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Вміст всередині ScrollView -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ABOUT OUR BRAND"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="22sp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/textv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Designed for movement.
+                                Built for everyday life."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv1"
+                android:textSize="38sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/textv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ecom is a conceptual clothing brand that combines minimalistic design with everyday comfort. This project demonstrates how a modern online fashion store can look and work, from product gallery and cart to a dark / light theme and fully responsive layout."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv2"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/textv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The main focus is clear visual structure, consistent UX and the use of modern frontend techniques without heavy frameworks."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv3"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"/>
+
+            <ImageView
+                android:id="@+id/imagv1"
+                android:layout_width="0dp"
+                android:layout_height="330dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv4"
+                android:src="@drawable/brand"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/textv5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Our Mission"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imagv1"
+                android:textSize="30sp"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/textv6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="To create a clean, intuitive shopping experience that highlights the product first. Every decision in the interface — from typography to colors — is made to support clarity and ease of use."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv5"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/textv7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Our Vision"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv6"
+                android:textSize="30sp"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/textv8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A digital storefront that could be easily extended into a real production environment: dynamic product pages, reusable layouts and scalable architecture for future development."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv7"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/textv9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Technology"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv8"
+                android:textSize="30sp"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/textv10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The project uses HTML, CSS, Bootstrap, vanilla JavaScript and localStorage for the cart system. Dark mode and dynamic product loading are implemented without heavy frameworks."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv9"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/textv11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20+"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv10"
+                android:textSize="30sp"
+                android:layout_marginTop="60dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/textv12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Demo products in the catalog"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv11"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/textv13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv12"
+                android:textSize="30sp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/textv14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Integrated payment system"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv13"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/textv15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv14"
+                android:textSize="30sp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/textv16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Themes: light and dark mode"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv15"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/textv17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="What this project demonstrates"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv16"
+                android:textSize="30sp"
+                android:layout_marginTop="60dp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/textv18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Key aspects that can be highlighted while defending your diploma."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv17"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/textv18"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                app:cardCornerRadius="32dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:paddingStart="18dp"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/textv119"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="01"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="22sp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/orange"/>
+
+                    <TextView
+                        android:id="@+id/textv120"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reusable structure"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textv119"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/textv121"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="One universal product page powered by JavaScript and a shared data model. New products are added via configuration instead of separate HTML files."
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textv120"
+                        android:textSize="18sp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/cardv1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                app:cardCornerRadius="32dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:paddingStart="18dp"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/textv1119"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="02"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="22sp"
+                        android:background="@color/orange"/>
+
+                    <TextView
+                        android:id="@+id/textv1120"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cart and UX details"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textv1119"
+                        android:textSize="30sp"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/textv1121"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sidebar cart with quantity tracking, price calculation and smooth interactions — from adding items to updating totals."
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textv1120"
+                        android:textSize="18sp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardv3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/cardv2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                app:cardCornerRadius="32dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:paddingStart="18dp"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/textv11119"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="03"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="22sp"
+                        android:background="@color/orange"/>
+
+                    <TextView
+                        android:id="@+id/textv11120"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dark mode integration"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textv11119"
+                        android:textSize="30sp"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/textv11121"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Full-page theme toggling with saved preference, adaptive colors for text, buttons, images and hero backgrounds."
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/textv11120"
+                        android:textSize="18sp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textv30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Behind the interface"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardv3"
+                android:textSize="30sp"
+                android:layout_marginTop="40dp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/textv31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The project is a result of design, development and experimentation with modern web practices."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv30"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imagev2"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:src="@drawable/note"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv31"
+                app:shapeAppearanceOverlay="@style/CircularImage"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/textv32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Frontend Developer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imagev2"
+                android:textSize="22sp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/textv33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Layout, JavaScript logic, cart, product pages, dark mode."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv32"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imagev3"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:src="@drawable/black_man"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv33"
+                app:shapeAppearanceOverlay="@style/CircularImage"
+                android:layout_marginTop="10dp"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/textv34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UI / UX Designer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imagev3"
+                android:textSize="22sp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/textv35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Visual style, color palette, typography and component structure."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv34"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imagev4"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:src="@drawable/girl"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv35"
+                app:shapeAppearanceOverlay="@style/CircularImage"
+                android:layout_marginTop="10dp"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/textv36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Project Author"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imagev4"
+                android:textSize="22sp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/textv37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Idea, implementation and documentation for the diploma defense."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv36"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/textv38"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ready to see the project in action?"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv37"
+                android:textSize="30sp"
+                android:layout_marginTop="60dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textv39"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Explore the catalog, switch between light and dark themes, test the cart functionality and review the structure of product pages."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textv38"
+                android:textSize="22sp"
+                android:layout_marginTop="10dp"/>
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Go to Shop"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:padding="12dp"
+                app:layout_constraintTop_toBottomOf="@id/textv39"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tv_empty_cart" type="id" />
+    <item name="recycler_cart_items" type="id" />
+    <item name="priceText" type="id" />
+    <item name="payButton" type="id" />
+</resources>

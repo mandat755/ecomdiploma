@@ -1,0 +1,105 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardCornerRadius="32dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="9dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="14dp">
+
+            <ImageView
+                android:id="@+id/prodImageView"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:src="@drawable/tshirt1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/prodNameText"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:text="Siple T-Shirt"
+                app:layout_constraintStart_toEndOf="@id/prodImageView"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/prodPriceText"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:text="$80.00"
+                app:layout_constraintStart_toEndOf="@id/prodImageView"
+                app:layout_constraintTop_toBottomOf="@id/prodNameText"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"/>
+
+            <TextView
+                android:id="@+id/textPust"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:text="Size: "
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                app:layout_constraintTop_toBottomOf="@id/prodPriceText"
+                app:layout_constraintStart_toEndOf="@id/prodImageView"/>
+
+            <!-- ... в твоєму item_cart_product.xml -->
+            <TextView
+                android:id="@+id/textSizeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:text="XXL"
+                android:layout_marginTop="2dp"
+                app:layout_constraintStart_toEndOf="@id/textPust"
+                app:layout_constraintTop_toBottomOf="@id/prodPriceText"/>
+
+            <Spinner
+                android:id="@+id/countSelector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/count_array"
+                app:layout_constraintTop_toBottomOf="@id/textPust"
+                app:layout_constraintStart_toEndOf="@id/prodImageView"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="8dp"
+                style="@style/CustomSpinnerStyle"/>
+
+            <ImageView
+                android:id="@+id/deleteIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/delete_32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="14dp"
+                android:focusable="true"
+                android:clickable="true"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

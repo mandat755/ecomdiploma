@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "10020643878",
+    "project_id": "ecomdiploma",
+    "storage_bucket": "ecomdiploma.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10020643878:android:524510e349f391d79a32e7",
+        "android_client_info": {
+          "package_name": "com.example.ecomdiploma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10020643878-n95bq5g8tgvblv353tu1ei597387v0j1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ecomdiploma",
+            "certificate_hash": "c852bc0ef897b8cc46264ab7c8b0cd6312cb84f6"
+          }
+        },
+        {
+          "client_id": "10020643878-rcmhusrsni2f3n495jsg7jihoh615ivg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuC5U1hq39BtkXDveg--GBoOllMVrCb1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10020643878-rcmhusrsni2f3n495jsg7jihoh615ivg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

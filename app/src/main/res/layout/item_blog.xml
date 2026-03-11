@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginStart="4dp"
+android:layout_marginEnd="4dp">
+
+<androidx.cardview.widget.CardView
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="32dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:cardBackgroundColor="@color/white"
+    android:layout_marginBottom="12dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginTop="1dp"
+    android:foreground="?attr/selectableItemBackground">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
+
+        <TextView
+            android:id="@+id/text1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Where calm meets style and inspiration grows."
+            android:textStyle="bold"
+            android:textSize="26sp"
+            android:gravity="center"
+            style="@style/TextCardStyle"/>
+
+        <ImageView
+            android:id="@+id/cardImage"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text2"
+            android:src="@drawable/blogone"
+            android:scaleType="fitXY"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text1"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/orange"
+            android:text="Jan 11, 2024"
+            style="@style/TextCardStyle"/>
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/text2"
+            app:layout_constraintTop_toBottomOf="@id/text1"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/orange"
+            android:text="- 5 min read"
+            style="@style/TextCardStyle"/>
+
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardImage"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="4dp"
+            android:text="Some outfits are made for movement, others are made for breathing deeply and feeling present.
+
+Good style doesn’t have to shout. Nude, warm, and earthy shades create a sense of calm even on the craziest day.
+
+Choose clean silhouettes and focus on textures: soft knits, brushed cotton, suede details.
+
+Create a small ritual before leaving home: choose your outfit the evening before, prepare your accessories, put on your favorite track. This calms you down and saves time in the morning."
+            android:textSize="18sp"
+            android:layout_marginBottom="50dp"
+            style="@style/TextCardStyle"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
