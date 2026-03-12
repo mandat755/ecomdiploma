@@ -41,6 +41,10 @@ class ProductAdapter(
 
         fun bind(product: Product) {
             Log.d("ProductImage", product.images.toString())
+            Log.d("ProductImage2", "${R.drawable.gripboots1}")
+            Log.d("ProductImage2", "${R.drawable.gripboots2}")
+            Log.d("ProductImage2", "${R.drawable.gripboots3}")
+            Log.d("ProductImage2", "${R.drawable.gripboots4}")
             productName.text = product.name
             productPrice.text = product.price
             if (product.images.isNotEmpty()) {
