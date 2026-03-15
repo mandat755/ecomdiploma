@@ -6,9 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.ecomdiploma"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.ecomdiploma"
@@ -29,61 +27,68 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    kotlin {
-        compilerOptions {
-            allWarningsAsErrors = false
-            jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
-        }
-    }
-
-
-    viewBinding {
-        enable = true
+    buildFeatures {
+        viewBinding = true
     }
 }
 
+// Правильний спосіб налаштувати Kotlin JVM target для Android-проєктів
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+        // allWarningsAsErrors.set(false)  // розкоментуй, якщо хочеш
+    }
+}
 
 dependencies {
+    // Основні AndroidX бібліотеки з version catalog (libs.versions.toml)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.cardview)
+    implementation(libs.play.services.analytics.impl)
+
+    // Тестування
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    /////////////////////////////////////////////////////////////////////////////
-
-    //залежності для Jetpack Navigation
+    // Jetpack Navigation
     implementation(libs.androidx.navigation.fragmentKtx)
     implementation(libs.androidx.navigation.uiKtx)
 
-    //Firebase
-    implementation(platform("com.google.firebase:firebase-bom:34.9.0"))
+    // ────────────────────────────────────────────────
+    // Firebase (завжди використовуй BOM + без версій)
+    implementation(platform("com.google.firebase:firebase-bom:34.10.0"))
+
     implementation("com.google.firebase:firebase-analytics")
-    // Firebase Authentication
-    implementation("com.google.firebase:firebase-auth:21.0.1")
-    // Google Sign-In
-    implementation("com.google.android.gms:play-services-auth:20.0.1")
-    // Firebase SDK
-    implementation("com.google.firebase:firebase-core:20.0.2")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-functions")
+    //implementation("com.google.firebase:firebase-functions-ktx")
+    // якщо дійсно потрібен firebase-core (зазвичай не потрібен з BOM)
+    // implementation("com.google.firebase:firebase-core")
+
+    // Google Sign-In (рекомендовано без версії, BOM сумісний)
+    implementation("com.google.android.gms:play-services-auth")
+
+    // Stripe
     implementation("com.stripe:stripe-android:22.8.1")
-    implementation("com.google.firebase:firebase-functions-ktx:20.0.0")
 
-    //ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
-    implementation("androidx.activity:activity-ktx:1.3.1")
+    // Lifecycle + Activity KTX (оновлені версії)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
+    implementation("androidx.activity:activity-ktx:1.9.3")  // сумісно з твоїм libs.activity
 
-    // EmailJS, Retrofit, Gson, Okhttp
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    // Retrofit + Gson + OkHttp (оновлені версії)
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }

@@ -4,13 +4,13 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import com.example.ecomdiploma.presentation.fragments.shopfrag.Product
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
+import com.example.ecomdiploma.presentation.fragments.shopfrag.Product
 
 class ProductRepository(context: Context) : SQLiteOpenHelper(context, "app_database.db", null, 1) {
     val dbPath = context.getDatabasePath("app_database.db").path
