@@ -108,13 +108,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ecomdiploma.R
-import com.example.ecomdiploma.data.ProductRepository
+import com.example.ecomdiploma.data.contactfrag.ProductRepository
 import com.example.ecomdiploma.databinding.FragmentShopBinding
+import com.example.ecomdiploma.domain.shopfrag.GetAllProductUseCase
+import com.example.ecomdiploma.domain.shopfrag.ProductModel
+import com.example.ecomdiploma.server.RetrofitClient
 import java.io.File
 
 class ShopFragment : Fragment() {
@@ -126,15 +131,30 @@ class ShopFragment : Fragment() {
     private lateinit var adapter: ProductAdapter
     private lateinit var productRepository: ProductRepository
 
+    private val shopViewModel: ShopViewModel by viewModels {
+        ShopViewModelFactory(
+            GetAllProductUseCase(RetrofitClient.apiService)
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentShopBinding.inflate(inflater, container, false)
-        recyclerView = binding.root.findViewById(R.id.recyclerView)
+
+        // Потрібна лише ініціалізація binding, без адаптера та спостережень
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Ініціалізація RecyclerView
+        recyclerView = binding.recyclerView
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2) // 2 колонки
 
-        val layout = R.layout.item_product
+        // Ініціалізація репозиторія
         productRepository = ProductRepository(requireContext())
 
         // Копіюємо базу даних з assets, якщо ще не скопійована
@@ -142,11 +162,21 @@ class ShopFragment : Fragment() {
             productRepository.copyDatabaseFromAssets(requireContext())
         }
 
-        val adapter = ProductAdapter(getProducts(), { product ->
-            onProductClick(product)
-        }, layout)
-        recyclerView.adapter = adapter
-        return binding.root
+        // Спостереження за змінами в LiveData
+        shopViewModel.allProductModelList.observe(viewLifecycleOwner) { productList ->
+            // Перевіряємо чи є дані
+            if (productList.isNullOrEmpty()) {
+                Toast.makeText(requireContext(), "Список порожній", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Кількість продуктів: ${productList.size}", Toast.LENGTH_SHORT).show()
+            }
+
+            // Оновлюємо адаптер після отримання продуктів
+            adapter = ProductAdapter(productList, { product ->
+                onProductClick(product)
+            }, R.layout.item_product)
+            recyclerView.adapter = adapter
+        }
     }
 
     override fun onDestroyView() {
@@ -154,13 +184,9 @@ class ShopFragment : Fragment() {
         _binding = null
     }
 
-    private fun getProducts(): List<Product> {
-        return productRepository.getAllProducts()
-    }
-
-    private fun onProductClick(product: Product) {
+    private fun onProductClick(productModel: ProductModel) {
         val bundle = Bundle()
-        bundle.putSerializable("product", product)
+        bundle.putSerializable("product", productModel)
         findNavController().navigate(R.id.action_nav_shop_to_productDetailFragment, bundle)
     }
 }

@@ -1,4 +1,4 @@
-package com.example.ecomdiploma.domain.model
+package com.example.ecomdiploma.domain.contactfrag
 
 data class EmailRequest(
     val service_id: String,

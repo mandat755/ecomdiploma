@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ecomdiploma.R
-import com.example.ecomdiploma.presentation.fragments.shopfrag.SimpleProduct
+import com.example.ecomdiploma.domain.shopfrag.SimpleProduct
 
 class CartAdapter(
     private var items: List<SimpleProduct>,

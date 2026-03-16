@@ -2,12 +2,11 @@ package com.example.ecomdiploma.presentation.viewmodel
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
-import com.example.ecomdiploma.presentation.fragments.shopfrag.SimpleProduct
+import com.example.ecomdiploma.domain.shopfrag.SimpleProduct
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

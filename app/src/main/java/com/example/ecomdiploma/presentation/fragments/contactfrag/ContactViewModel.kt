@@ -3,9 +3,9 @@ package com.example.ecomdiploma.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.ecomdiploma.domain.service.EmailService
-import com.example.ecomdiploma.domain.model.EmailRequest
-import com.example.ecomdiploma.data.remote.EmailServiceImpl
+import com.example.ecomdiploma.domain.contactfrag.EmailService
+import com.example.ecomdiploma.domain.contactfrag.EmailRequest
+import com.example.ecomdiploma.data.contactfrag.EmailServiceImpl
 
 class ContactViewModel : ViewModel() {
 

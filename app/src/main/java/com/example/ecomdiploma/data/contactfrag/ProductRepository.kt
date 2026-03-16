@@ -1,16 +1,15 @@
-package com.example.ecomdiploma.data
+package com.example.ecomdiploma.data.contactfrag
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import java.io.File
-import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
-import com.example.ecomdiploma.presentation.fragments.shopfrag.Product
+import com.example.ecomdiploma.domain.shopfrag.ProductModel
 
 class ProductRepository(context: Context) : SQLiteOpenHelper(context, "app_database.db", null, 1) {
     val dbPath = context.getDatabasePath("app_database.db").path
@@ -62,11 +61,11 @@ class ProductRepository(context: Context) : SQLiteOpenHelper(context, "app_datab
         }
     }
 
-    fun getAllProducts(): List<Product> {
+    fun getAllProducts(): List<ProductModel> {
         val db = this.readableDatabase
         val cursor = db.rawQuery("SELECT * FROM Product", null)
 
-        val products = mutableListOf<Product>()
+        val productModels = mutableListOf<ProductModel>()
         while (cursor.moveToNext()) {
             val name = cursor.getString(cursor.getColumnIndex("name"))
             val price = cursor.getString(cursor.getColumnIndex("price"))
@@ -74,10 +73,13 @@ class ProductRepository(context: Context) : SQLiteOpenHelper(context, "app_datab
             val imagesString = cursor.getString(cursor.getColumnIndex("images"))
             val images = imagesString.split(",").map { it.toInt() }
 
-            products.add(Product(name, price, images, description))
+            productModels.add(ProductModel(name = name,
+                price = price,
+                images = images,
+                description = description))
         }
         cursor.close()
         db.close()
-        return products
+        return productModels
     }
 }

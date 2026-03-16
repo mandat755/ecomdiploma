@@ -1,7 +1,7 @@
-package com.example.ecomdiploma.data.remote
+package com.example.ecomdiploma.data.contactfrag
 
-import com.example.ecomdiploma.domain.model.EmailRequest
-import com.example.ecomdiploma.domain.model.EmailResponse
+import com.example.ecomdiploma.domain.contactfrag.EmailRequest
+import com.example.ecomdiploma.domain.contactfrag.EmailResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST

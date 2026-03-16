@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.ecomdiploma.R
 import com.example.ecomdiploma.databinding.FragmentMainBinding
-import com.example.ecomdiploma.presentation.fragments.shopfrag.Product
+import com.example.ecomdiploma.domain.shopfrag.ProductModel
 import com.example.ecomdiploma.presentation.viewmodel.AuthorizationViewModel
 
 class MainFragment : Fragment() {
@@ -38,9 +38,9 @@ class MainFragment : Fragment() {
 
     private fun setOnClickListenerForCard() {
         val cardClickListener = View.OnClickListener { view ->
-            val product: Product = when (view.id) {
+            val productModel: ProductModel = when (view.id) {
                 R.id.card11 -> {
-                    Product(
+                    ProductModel(
                         name = "Cotton Socks",
                         price = "$5.00",
                         images = listOf(R.drawable.socks1, R.drawable.socks2, R.drawable.socks3, R.drawable.socks4),
@@ -48,7 +48,7 @@ class MainFragment : Fragment() {
                     )
                 }
                 R.id.card12 -> {
-                    Product(
+                    ProductModel(
                         name = "Crimson Grip Boots",
                         price = "$80.00",
                         images = listOf(R.drawable.gripboots1,R.drawable.gripboots2, R.drawable.gripboots3, R.drawable.gripboots4),
@@ -56,7 +56,7 @@ class MainFragment : Fragment() {
                     )
                 }
                 R.id.card13 -> {
-                    Product(
+                    ProductModel(
                         name = "Midnight Urban Pack",
                         price = "$22.00",
                         images = listOf(R.drawable.pack1, R.drawable.pack2, R.drawable.pack3, R.drawable.pack4),
@@ -64,7 +64,7 @@ class MainFragment : Fragment() {
                     )
                 }
                 R.id.card14 -> {
-                    Product(
+                    ProductModel(
                         name = "Soft Knit Beanie",
                         price = "$30.00",
                         images = listOf(R.drawable.shap1, R.drawable.shap2, R.drawable.shap3, R.drawable.shap4),
@@ -72,7 +72,7 @@ class MainFragment : Fragment() {
                     )
                 }
                 R.id.card411 -> {
-                    Product(
+                    ProductModel(
                         name = "Bold Chrono",
                         price = "$92.00",
                         images = listOf(R.drawable.boldcrono1, R.drawable.boldcrono2, R.drawable.boldcrono3, R.drawable.boldcrono4),
@@ -80,7 +80,7 @@ class MainFragment : Fragment() {
                     )
                 }
                 R.id.card412 -> {
-                    Product(
+                    ProductModel(
                         name = "Minimal Croco",
                         price = "$85.00",
                         images = listOf(R.drawable.minimalcroco1, R.drawable.minimalcroco2, R.drawable.minimalcroco3, R.drawable.minimalcroco4),
@@ -88,7 +88,7 @@ class MainFragment : Fragment() {
                     )
                 }
                 R.id.card413 -> {
-                    Product(
+                    ProductModel(
                         name = "Mesh Chrono",
                         price = "$133.00",
                         images = listOf(R.drawable.meshcrono1, R.drawable.meshcrono2, R.drawable.meshcrono3, R.drawable.meshcrono4),
@@ -96,7 +96,7 @@ class MainFragment : Fragment() {
                     )
                 }
                 R.id.card414 -> {
-                    Product(
+                    ProductModel(
                         name = "AeroSport Racer",
                         price = "$112.00",
                         images = listOf(R.drawable.aerosport1, R.drawable.aerosport2, R.drawable.aerosport3, R.drawable.aerosport4),
@@ -104,7 +104,7 @@ class MainFragment : Fragment() {
                     )
                 }
                 R.id.card5411 -> {
-                    Product(
+                    ProductModel(
                         name = "Urban High",
                         price = "$65.00",
                         images = listOf(R.drawable.urbanhigh1, R.drawable.urbanhigh2, R.drawable.urbanhigh3, R.drawable.urbanhigh4),
@@ -112,7 +112,7 @@ class MainFragment : Fragment() {
                     )
                 }
                 R.id.card5412 -> {
-                    Product(
+                    ProductModel(
                         name = "Sand Trek",
                         price = "$42.00",
                         images = listOf(R.drawable.sandtrek1, R.drawable.sandtrek2, R.drawable.sandtrek3, R.drawable.sandtrek4),
@@ -120,7 +120,7 @@ class MainFragment : Fragment() {
                     )
                 }
                 R.id.card5413 -> {
-                    Product(
+                    ProductModel(
                         name = "Coffee Lace",
                         price = "$81.00",
                         images = listOf(R.drawable.coffelace1, R.drawable.coffelace2, R.drawable.coffelace3, R.drawable.coffelace4),
@@ -128,7 +128,7 @@ class MainFragment : Fragment() {
                     )
                 }
                 R.id.card5414 -> {
-                    Product(
+                    ProductModel(
                         name = "Mocha Edge",
                         price = "$102.00",
                         images = listOf(R.drawable.mochaedge1, R.drawable.mochaedge2, R.drawable.mochaedge3, R.drawable.mochaedge4),
@@ -139,7 +139,7 @@ class MainFragment : Fragment() {
                     return@OnClickListener
                 }
             }
-            navigateToProductDetailFragment(product)
+            navigateToProductDetailFragment(productModel)
         }
 
         binding.card11.setOnClickListener(cardClickListener)
@@ -163,9 +163,9 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
-    private fun navigateToProductDetailFragment(product: Product) {
+    private fun navigateToProductDetailFragment(productModel: ProductModel) {
         val bundle = Bundle()
-        bundle.putSerializable("product", product)
+        bundle.putSerializable("product", productModel)
         findNavController().navigate(R.id.action_nav_home_to_productDetailFragment, bundle)
     }
 }

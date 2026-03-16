@@ -1,8 +1,8 @@
-package com.example.ecomdiploma.data.remote
+package com.example.ecomdiploma.data.contactfrag
 
-import com.example.ecomdiploma.domain.model.EmailRequest
-import com.example.ecomdiploma.domain.model.EmailResponse
-import com.example.ecomdiploma.domain.service.EmailService
+import com.example.ecomdiploma.domain.contactfrag.EmailRequest
+import com.example.ecomdiploma.domain.contactfrag.EmailResponse
+import com.example.ecomdiploma.domain.contactfrag.EmailService
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

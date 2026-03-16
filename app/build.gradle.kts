@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
+    kotlin("kapt") // Підключаємо плагін для використання kapt
 }
 
 android {
@@ -38,11 +39,9 @@ android {
     }
 }
 
-// Правильний спосіб налаштувати Kotlin JVM target для Android-проєктів
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     compilerOptions {
         jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
-        // allWarningsAsErrors.set(false)  // розкоментуй, якщо хочеш
     }
 }
 
@@ -68,27 +67,35 @@ dependencies {
     // ────────────────────────────────────────────────
     // Firebase (завжди використовуй BOM + без версій)
     implementation(platform("com.google.firebase:firebase-bom:34.10.0"))
-
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-functions")
-    //implementation("com.google.firebase:firebase-functions-ktx")
-    // якщо дійсно потрібен firebase-core (зазвичай не потрібен з BOM)
-    // implementation("com.google.firebase:firebase-core")
 
-    // Google Sign-In (рекомендовано без версії, BOM сумісний)
+    // Google Sign-In
     implementation("com.google.android.gms:play-services-auth")
 
     // Stripe
     implementation("com.stripe:stripe-android:22.8.1")
 
-    // Lifecycle + Activity KTX (оновлені версії)
+    // Lifecycle + Activity KTX
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
-    implementation("androidx.activity:activity-ktx:1.9.3")  // сумісно з твоїм libs.activity
+    implementation("androidx.activity:activity-ktx:1.9.3")
 
-    // Retrofit + Gson + OkHttp (оновлені версії)
+    // Retrofit + Gson + OkHttp
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    // Room Database
+    implementation("androidx.room:room-runtime:2.5.0")
+    kapt("androidx.room:room-compiler:2.5.0")
+    implementation("androidx.room:room-ktx:2.5.0")
+
+    //Ktor
+    implementation("io.ktor:ktor-server-core:3.0.3")
+    implementation("io.ktor:ktor-server-netty:3.0.3")
+    implementation("io.ktor:ktor-server-content-negotiation:3.0.3")
+    implementation("io.ktor:ktor-serialization-gson:2.3.4")
 }
