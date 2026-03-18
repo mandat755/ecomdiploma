@@ -29,6 +29,7 @@ import com.example.ecomdiploma.databinding.ActivityMainBinding
 import com.example.ecomdiploma.presentation.fragments.CartAdapter
 import com.example.ecomdiploma.presentation.viewmodel.AuthorizationViewModel
 import com.example.ecomdiploma.presentation.viewmodel.CartViewModel
+import com.example.ecomdiploma.server.KtorServer
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.badge.BadgeUtils
 import com.google.android.material.badge.ExperimentalBadgeUtils
@@ -111,6 +112,8 @@ class MainActivity : AppCompatActivity() {
         cartViewModel.cartItemCount.observe(this) { count -> updateCartBadge(count) }
 
         initCartDrawer()
+
+        KtorServer.startServer(context = applicationContext)
     }
 
     private fun initCartDrawer() {
@@ -270,5 +273,10 @@ class MainActivity : AppCompatActivity() {
             scrollView.scrollTo(0, scrollPosition)
         }
         logoImageView.invalidate()
+    }
+
+    override fun onDestroy() {
+        KtorServer.stopServer()
+        super.onDestroy()
     }
 }

@@ -15,6 +15,7 @@ class ShopViewModel(private val getAllProductUseCase: GetAllProductUseCase): Vie
     val allProductModelList: MutableLiveData<List<ProductModel>> = _allProductModelList     //ProductModel
 
     fun getAllProduct() {
+        Log.d("MyRoomLog", "Тут 3")
         viewModelScope.launch {
             try {
                 delay(10)

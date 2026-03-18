@@ -116,6 +116,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ecomdiploma.R
 import com.example.ecomdiploma.data.contactfrag.ProductRepository
+
 import com.example.ecomdiploma.databinding.FragmentShopBinding
 import com.example.ecomdiploma.domain.shopfrag.GetAllProductUseCase
 import com.example.ecomdiploma.domain.shopfrag.ProductModel
@@ -142,19 +143,10 @@ class ShopFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentShopBinding.inflate(inflater, container, false)
-
-        // Потрібна лише ініціалізація binding, без адаптера та спостережень
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        // Ініціалізація RecyclerView
-        recyclerView = binding.recyclerView
+        recyclerView = binding.root.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2) // 2 колонки
 
-        // Ініціалізація репозиторія
+        val layout = R.layout.item_product
         productRepository = ProductRepository(requireContext())
 
         // Копіюємо базу даних з assets, якщо ще не скопійована
@@ -162,7 +154,13 @@ class ShopFragment : Fragment() {
             productRepository.copyDatabaseFromAssets(requireContext())
         }
 
-        // Спостереження за змінами в LiveData
+        val adapter = ProductAdapter(getProducts(), { product ->
+            onProductClick(product)
+        }, layout)
+        recyclerView.adapter = adapter
+
+        shopViewModel.getAllProduct()
+
         shopViewModel.allProductModelList.observe(viewLifecycleOwner) { productList ->
             // Перевіряємо чи є дані
             if (productList.isNullOrEmpty()) {
@@ -172,11 +170,10 @@ class ShopFragment : Fragment() {
             }
 
             // Оновлюємо адаптер після отримання продуктів
-            adapter = ProductAdapter(productList, { product ->
-                onProductClick(product)
-            }, R.layout.item_product)
-            recyclerView.adapter = adapter
         }
+
+
+        return binding.root
     }
 
     override fun onDestroyView() {
@@ -184,9 +181,31 @@ class ShopFragment : Fragment() {
         _binding = null
     }
 
-    private fun onProductClick(productModel: ProductModel) {
+    private fun getProducts(): List<ProductModel> {
+        return productRepository.getAllProducts()
+    }
+
+    private fun onProductClick(product: ProductModel) {
         val bundle = Bundle()
-        bundle.putSerializable("product", productModel)
+        bundle.putSerializable("product", product)
         findNavController().navigate(R.id.action_nav_shop_to_productDetailFragment, bundle)
     }
 }
+
+
+//private val shopViewModel: ShopViewModel by viewModels {
+//    ShopViewModelFactory(
+//        GetAllProductUseCase(RetrofitClient.apiService)
+//    )
+//}
+
+//shopViewModel.allProductModelList.observe(viewLifecycleOwner) { productList ->
+//    // Перевіряємо чи є дані
+//    if (productList.isNullOrEmpty()) {
+//        Toast.makeText(requireContext(), "Список порожній", Toast.LENGTH_SHORT).show()
+//    } else {
+//        Toast.makeText(requireContext(), "Кількість продуктів: ${productList.size}", Toast.LENGTH_SHORT).show()
+//    }
+//
+//    // Оновлюємо адаптер після отримання продуктів
+//}

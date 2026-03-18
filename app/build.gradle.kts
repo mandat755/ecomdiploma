@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
-    kotlin("kapt") // Підключаємо плагін для використання kapt
+    id("com.google.devtools.ksp")                  // ← ЗАМІНИЛИ kapt на ksp
 }
 
 android {
@@ -36,6 +36,14 @@ android {
 
     buildFeatures {
         viewBinding = true
+    }
+
+    packagingOptions {
+        // Викидаємо файли io.netty.versions.properties
+        exclude("META-INF/io.netty.versions.properties")
+        // Додаємо виключення для інших проблемних файлів
+        exclude("META-INF/INDEX.LIST")
+        exclude("META-INF/*.kotlin_module")
     }
 }
 
@@ -86,16 +94,16 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
-    // Room Database
-    implementation("androidx.room:room-runtime:2.5.0")
-    kapt("androidx.room:room-compiler:2.5.0")
-    implementation("androidx.room:room-ktx:2.5.0")
+    // Room Database — ВИПРАВЛЕНО + оновлено до сумісної версії
+    implementation("androidx.room:room-runtime:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")           // ← замість kapt
+    implementation("androidx.room:room-ktx:2.6.1")
 
-    //Ktor
-    implementation("io.ktor:ktor-server-core:3.0.3")
-    implementation("io.ktor:ktor-server-netty:3.0.3")
-    implementation("io.ktor:ktor-server-content-negotiation:3.0.3")
-    implementation("io.ktor:ktor-serialization-gson:2.3.4")
+    // Ktor (перевір версії)
+    implementation("io.ktor:ktor-server-core-jvm:3.0.3")  // Перевірте сумісність з Kotlin 2.3.0
+    implementation("io.ktor:ktor-server-netty-jvm:3.0.3")
+    implementation("io.ktor:ktor-server-content-negotiation-jvm:3.0.3")
+    implementation("io.ktor:ktor-serialization-gson-jvm:3.0.3")
 }

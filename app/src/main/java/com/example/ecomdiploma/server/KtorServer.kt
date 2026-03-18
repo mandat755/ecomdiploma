@@ -1,12 +1,14 @@
 package com.example.ecomdiploma.server
 
 import android.content.Context
+import android.util.Log
 import com.example.ecomdiploma.data.database.ProductsDB
 import com.example.ecomdiploma.data.productdatabase.ProductEntity
 import com.example.ecomdiploma.domain.shopfrag.ProductModel
 import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.gson.gson
 import io.ktor.server.application.Application
+import io.ktor.server.application.call
 import io.ktor.server.application.install
 import io.ktor.server.engine.EmbeddedServer
 import io.ktor.server.engine.embeddedServer
@@ -40,32 +42,9 @@ fun Application.module(context: Context) {
                 call.respond(HttpStatusCode.InternalServerError, "Помилка пошуку брендів: $e")
             }
         }
-        get("/feeds") {
-//            try {
-//                val brand = call.request.queryParameters["brand"]
-//                val keyWord = call.request.queryParameters["keyWord"]
-//                if (brand != null) {
-//                    if (keyWord != null) {
-//                        val specs = ProductsDB.getDb(context).getDao().getFeedWhichContains(brand, keyWord)
-//                        if (specs.isNotEmpty()) {
-//                            call.respond(specs)
-//                        } else {
-//                            call.respond(HttpStatusCode.NotFound, "Не знайдено специфікацій для бренду - $brand")
-//                        }
-//                    }
-//                    val specs = ProductsDB.getDb(context).getDao().getFeedByBrand(brand)
-//
-//                    if (specs.isNotEmpty()) {
-//                        call.respond(specs)
-//                    } else {
-//                        call.respond(HttpStatusCode.NotFound, "Не знайдено специфікацій для бренду - $brand")
-//                    }
-//                } else {
-//                    call.respond(HttpStatusCode.BadRequest, "Пропущено параметр 'brand'")
-//                }
-//            } catch (e: Exception) {
-//                call.respond(HttpStatusCode.InternalServerError, "Помилка пошуку специфікацій: $e")
-//            }
+        get("/products") {
+            Log.d("MyRoomLog", "Тут 2")
+            call.respond(listOf(ProductEntity(name = "1", price = "50", description = "desc", images = listOf(1))))
         }
         post("/addBrand") {
             val brandName = call.request.queryParameters["brandName"]
@@ -78,7 +57,6 @@ fun Application.module(context: Context) {
             try {
                 val dao = ProductsDB.getDb(context).getDao()
                 //val entity = ProductModel(name = brandName, brandLogo = 6, cardBackColor = 5, textColor = 2).toEntity()
-
                 //dao.insertBrand(entity)
 
                 call.respond(HttpStatusCode.OK, "Бренд створено")
@@ -87,17 +65,13 @@ fun Application.module(context: Context) {
             }
         }
         post("/addFeed") {
-            val feedString =  call.request.queryParameters["spec"]
+            val feedString = call.request.queryParameters["spec"]
             val tempList = feedString?.split("/")
 
             try {
                 if (tempList != null) {
-//                    val feed = ProductModel(tempList[0].toInt(), tempList[1], tempList[2].toInt(), tempList[3],
-//                        tempList[4], tempList[5].toInt(), tempList[6].toInt(), tempList[7].toInt(), tempList[8].toInt(),
-//                        tempList[9].toInt(), tempList[10], tempList[11])
-
+                    //val feed = ProductModel(...)
                     val dao = ProductsDB.getDb(context).getDao()
-
                     //val en = feed.toEntity()
                     //dao.insertFeed(en)
                 }
@@ -123,7 +97,9 @@ object KtorServer {
                     host = "localhost",
                     port = 8081,
                     module = { module(context) }
-                ).start(wait = false)
+                )
+                server?.start(wait = false)
+                Log.d("MyRoomLog", "Тут 1")// ← ВИПРАВЛЕНО (окремий виклик)
             }
         }
     }
