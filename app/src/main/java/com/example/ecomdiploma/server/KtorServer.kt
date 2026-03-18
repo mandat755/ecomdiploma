@@ -22,6 +22,7 @@ import io.ktor.server.routing.routing
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import com.example.ecomdiploma.R
 
 fun Application.module(context: Context) {
     install(ContentNegotiation) {
@@ -43,8 +44,20 @@ fun Application.module(context: Context) {
             }
         }
         get("/products") {
-            Log.d("MyRoomLog", "Тут 2")
-            call.respond(listOf(ProductEntity(name = "1", price = "50", description = "desc", images = listOf(1))))
+            try {
+                Log.d("MyRoomLog", "Тут 2")
+
+                val dao = ProductsDB.getDb(context).getDao()
+                val products = dao.getProducts()
+
+                Log.d("MyRoomLog", "count = ${products.size}")
+                Log.d("MyRoomLog", "products = $products")
+
+                call.respond(products)
+            } catch (e: Exception) {
+                Log.e("MyRoomLog", "Помилка в /products", e)
+                call.respond(HttpStatusCode.InternalServerError, e.message ?: "error")
+            }
         }
         post("/addBrand") {
             val brandName = call.request.queryParameters["brandName"]

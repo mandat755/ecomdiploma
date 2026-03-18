@@ -154,7 +154,7 @@ class ShopFragment : Fragment() {
             productRepository.copyDatabaseFromAssets(requireContext())
         }
 
-        val adapter = ProductAdapter(getProducts(), { product ->
+        val adapter = ProductAdapter(emptyList(), { product ->
             onProductClick(product)
         }, layout)
         recyclerView.adapter = adapter
@@ -164,8 +164,10 @@ class ShopFragment : Fragment() {
         shopViewModel.allProductModelList.observe(viewLifecycleOwner) { productList ->
             // Перевіряємо чи є дані
             if (productList.isNullOrEmpty()) {
+                //recyclerView.adapter?.notifyDataSetChanged()
                 Toast.makeText(requireContext(), "Список порожній", Toast.LENGTH_SHORT).show()
             } else {
+                adapter.updateProducts(productList)
                 Toast.makeText(requireContext(), "Кількість продуктів: ${productList.size}", Toast.LENGTH_SHORT).show()
             }
 

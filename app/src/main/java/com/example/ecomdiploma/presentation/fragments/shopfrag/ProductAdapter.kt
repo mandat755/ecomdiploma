@@ -11,7 +11,7 @@ import com.example.ecomdiploma.R
 import com.example.ecomdiploma.domain.shopfrag.ProductModel
 
 class ProductAdapter(
-    private val productModels: List<ProductModel>,
+    private var productModels: List<ProductModel>,
     private val onItemClickListener: (ProductModel) -> Unit,
     private val layout: Int
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
@@ -27,6 +27,11 @@ class ProductAdapter(
     }
 
     override fun getItemCount(): Int = productModels.size
+
+    fun updateProducts(newList: List<ProductModel>) {
+        this.productModels = newList
+        notifyDataSetChanged()
+    }
 
     inner class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val productName: TextView = view.findViewById(R.id.productName)
