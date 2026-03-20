@@ -75,7 +75,7 @@ class ProductDetailFragment : Fragment() {
             val image = binding.productImage.tag as? Int ?: R.drawable.tshirt1
 
 
-            val simpleProd = SimpleProduct(name, price, size, image)
+            val simpleProd = SimpleProduct(name = name, price = price, size = size, imageResId = image)
             cartViewModel.addItemToCart(simpleProd)
         }
     }
