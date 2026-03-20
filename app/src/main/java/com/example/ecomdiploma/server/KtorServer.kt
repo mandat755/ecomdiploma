@@ -23,6 +23,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import com.example.ecomdiploma.R
+import com.example.ecomdiploma.data.shopfrag.CartProductMapper.toEntity
+import com.example.ecomdiploma.data.shopfrag.CartProductMapper.toModel
+import com.example.ecomdiploma.data.shopfrag.ShopProductMapper.toModel
+import com.example.ecomdiploma.domain.shopfrag.SimpleProductModel
+import io.ktor.server.request.receive
 
 fun Application.module(context: Context) {
     install(ContentNegotiation) {
@@ -54,6 +59,23 @@ fun Application.module(context: Context) {
                 Log.d("MyRoomLog", "products = $products")
 
                 call.respond(products)
+            } catch (e: Exception) {
+                Log.e("MyRoomLog", "Помилка в /products", e)
+                call.respond(HttpStatusCode.InternalServerError, e.message ?: "error")
+            }
+        }
+        get("/productsForCart") {
+            try {
+                Log.d("MyRoomLog", "Тут 2")
+
+                val dao = ProductsDB.getDb(context).getDao()
+                val products = dao.getProductForCart()?.map { it.toModel() }
+
+                Log.d("MyRoomLog", "count = ${products?.size}")
+                Log.d("MyRoomLog", "products = $products")
+
+                // Вказуємо правильний тип відповіді
+                call.respond(products ?: emptyList())  // Якщо products null, відправимо порожній список
             } catch (e: Exception) {
                 Log.e("MyRoomLog", "Помилка в /products", e)
                 call.respond(HttpStatusCode.InternalServerError, e.message ?: "error")
@@ -92,6 +114,27 @@ fun Application.module(context: Context) {
                 call.respond(HttpStatusCode.OK, "Специфікацію створено")
             } catch (e: Exception) {
                 call.respond(HttpStatusCode.InternalServerError, "Помилка створення специфікації: ${e.message}")
+            }
+        }
+        post("/saveProducts") {
+            val products = call.request.queryParameters["products"] // Отримуємо список продуктів із запиту
+            Log.d("myyyys", "$products")
+
+            try {
+                val dao = ProductsDB.getDb(context).getDao()
+
+                // Перетворюємо список SimpleProductModel на список SimpleProductEntity
+//                val productEntities = products.map { it.toEntity() }
+//
+//                for (prod in productEntities) {
+//                    dao.insertProduct(prod)
+//                }
+//                // Зберігаємо продукти у базі даних
+
+                call.respond(HttpStatusCode.OK, "Products saved successfully")
+            } catch (e: Exception) {
+                Log.e("MyRoomLog", "Error saving products", e)
+                call.respond(HttpStatusCode.InternalServerError, "Error saving products")
             }
         }
     }

@@ -12,7 +12,7 @@ import com.example.ecomdiploma.R
 import com.example.ecomdiploma.databinding.FragmentProductDetailBinding
 import com.example.ecomdiploma.domain.shopfrag.ProductModel
 import com.example.ecomdiploma.presentation.fragments.shopfrag.ProductAdapter
-import com.example.ecomdiploma.domain.shopfrag.SimpleProduct
+import com.example.ecomdiploma.domain.shopfrag.SimpleProductModel
 import com.example.ecomdiploma.presentation.viewmodel.CartViewModel
 
 class ProductDetailFragment : Fragment() {
@@ -75,7 +75,7 @@ class ProductDetailFragment : Fragment() {
             val image = binding.productImage.tag as? Int ?: R.drawable.tshirt1
 
 
-            val simpleProd = SimpleProduct(name = name, price = price, size = size, imageResId = image)
+            val simpleProd = SimpleProductModel(name = name, price = price, size = size, imageResId = image)
             cartViewModel.addItemToCart(simpleProd)
         }
     }

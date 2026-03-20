@@ -8,8 +8,9 @@ import androidx.room.TypeConverters
 import com.example.ecomdiploma.data.productdatabase.Dao
 import com.example.ecomdiploma.data.productdatabase.ImagesTypeConverter
 import com.example.ecomdiploma.data.productdatabase.ProductEntity
+import com.example.ecomdiploma.data.productdatabase.SimpleProductEntity
 
-@Database(entities = [ProductEntity::class], version = 1)
+@Database(entities = [ProductEntity::class, SimpleProductEntity::class], version = 1)
 @TypeConverters(ImagesTypeConverter::class)
 abstract class ProductsDB : RoomDatabase() {
     abstract fun getDao(): Dao

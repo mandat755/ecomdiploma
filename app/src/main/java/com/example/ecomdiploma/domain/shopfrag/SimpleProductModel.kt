@@ -1,6 +1,6 @@
 package com.example.ecomdiploma.domain.shopfrag
 
-data class SimpleProduct(
+data class SimpleProductModel(
     val id: Int =0,
     val name: String,
     val price: String,

@@ -1,6 +1,7 @@
 package com.example.ecomdiploma.server
 
 import com.example.ecomdiploma.data.productdatabase.ProductEntity
+import com.example.ecomdiploma.domain.shopfrag.SimpleProductModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -13,10 +14,14 @@ import retrofit2.http.Query
 interface ApiService {
     @GET("/products")
     suspend fun getProducts(): List<ProductEntity>
+    @GET("/productsForCart")
+    suspend fun getProductsForCart(): List<SimpleProductModel>
     @GET("/products")
     suspend fun getFeeds(@Query("name") name: String, @Query("keyWord") keyWord: String): List<ProductEntity>
     @POST("/addProduct")
     suspend fun addBrand(@Query("name") brandName: String): Response<Unit>
+    @POST("/saveProducts")
+    suspend fun saveProducts(@Query("products") products: List<SimpleProductModel>): Response<Unit>
 }
 
 object RetrofitClient {

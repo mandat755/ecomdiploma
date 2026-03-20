@@ -16,6 +16,7 @@ import androidx.core.view.GravityCompat
 import androidx.core.widget.NestedScrollView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -26,10 +27,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ecomdiploma.R
 import com.example.ecomdiploma.databinding.ActivityMainBinding
+import com.example.ecomdiploma.domain.shopfrag.AddProductToCartUseCase
+import com.example.ecomdiploma.domain.shopfrag.GetSavedProdUseCase
 import com.example.ecomdiploma.presentation.fragments.CartAdapter
 import com.example.ecomdiploma.presentation.viewmodel.AuthorizationViewModel
 import com.example.ecomdiploma.presentation.viewmodel.CartViewModel
+import com.example.ecomdiploma.server.ApiService
 import com.example.ecomdiploma.server.KtorServer
+import com.example.ecomdiploma.server.RetrofitClient
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.badge.BadgeUtils
 import com.google.android.material.badge.ExperimentalBadgeUtils
@@ -38,6 +43,7 @@ import com.google.firebase.functions.FirebaseFunctions
 import com.stripe.android.PaymentConfiguration
 import com.stripe.android.paymentsheet.PaymentSheet
 import com.stripe.android.paymentsheet.PaymentSheetResult
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -46,7 +52,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navigationView: NavigationView
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val authorizationViewModel: AuthorizationViewModel by viewModels()
-    private val cartViewModel: CartViewModel by viewModels()
+    private val cartViewModel: CartViewModel by viewModels {
+        CartViewModelFactory(
+            addProductToCartUseCase = AddProductToCartUseCase(RetrofitClient.apiService), // Тут передається AddProductToCartUseCase
+            application = application,
+            getSavedProdUseCase = GetSavedProdUseCase(RetrofitClient.apiService)
+        )
+    }
+
 
     private var cartBadge: BadgeDrawable? = null
 
@@ -114,6 +127,9 @@ class MainActivity : AppCompatActivity() {
         initCartDrawer()
 
         KtorServer.startServer(context = applicationContext)
+        cartViewModel.viewModelScope.launch {
+            cartViewModel.loadSavedCart()
+        }
     }
 
     private fun initCartDrawer() {

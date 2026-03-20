@@ -7,11 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ecomdiploma.R
-import com.example.ecomdiploma.domain.shopfrag.SimpleProduct
+import com.example.ecomdiploma.domain.shopfrag.SimpleProductModel
 
 class CartAdapter(
-    private var items: List<SimpleProduct>,
-    private val onDeleteClick: (SimpleProduct) -> Unit
+    private var items: List<SimpleProductModel>,
+    private val onDeleteClick: (SimpleProductModel) -> Unit
 ) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -40,7 +40,7 @@ class CartAdapter(
     }
 
     override fun getItemCount() = items.size
-    fun updateItems(newItems: List<SimpleProduct>) {
+    fun updateItems(newItems: List<SimpleProductModel>) {
         items = newItems
         notifyDataSetChanged()
     }

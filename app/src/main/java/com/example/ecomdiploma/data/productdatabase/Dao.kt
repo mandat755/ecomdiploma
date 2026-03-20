@@ -16,7 +16,14 @@ interface Dao {
     @Query("SELECT * FROM Product WHERE name = :name LIMIT 1")
     suspend fun getProductByName(name: String): ProductEntity?
 
+    @Query("SELECT * FROM cart_products")
+    suspend fun getProductForCart(): List<SimpleProductEntity>?
+
     // Замінили Object на List<ProductEntity> для отримання списку продуктів
     @Query("SELECT * FROM Product")
     suspend fun getProducts(): List<ProductEntity>
+
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertProduct(product: SimpleProductEntity)
 }
