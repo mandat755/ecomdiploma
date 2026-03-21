@@ -38,7 +38,7 @@ class CartViewModel(
     suspend fun loadSavedCart() {
         try {
             // Додаємо затримку перед запитом, щоб сервер встиг стартувати
-            delay(2000) // Затримка 2 секунди, можете підлаштувати
+            delay(1200) // Затримка 2 секунди, можете підлаштувати
             val savedCart = getSavedProdUseCase.getProducts()
             _cartItems.value = savedCart // присвоєння значення в LiveData
         } catch (e: Exception) {
@@ -62,6 +62,7 @@ class CartViewModel(
     fun removeItem(product: SimpleProductModel) {
         val updated = _cartItems.value.orEmpty().filterNot { it.name == product.name && it.size == product.size && it.imageResId == product.imageResId }
         _cartItems.value = updated
+        Log.d("Mylogcartlohhh", "$updated")
         saveCartItemsUpdated(updated)
     }
 

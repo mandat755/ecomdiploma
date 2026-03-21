@@ -7,6 +7,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -21,7 +22,7 @@ interface ApiService {
     @POST("/addProduct")
     suspend fun addBrand(@Query("name") brandName: String): Response<Unit>
     @POST("/saveProducts")
-    suspend fun saveProducts(@Query("products") products: List<SimpleProductModel>): Response<Unit>
+    suspend fun saveProducts(@Body products: List<SimpleProductModel>): Response<Unit>
 }
 
 object RetrofitClient {

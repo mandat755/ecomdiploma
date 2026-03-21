@@ -26,4 +26,10 @@ interface Dao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProduct(product: SimpleProductEntity)
+
+    @Query("DELETE FROM cart_products")
+    suspend fun deleteCart()
+
+    @Query("DELETE FROM cart_products WHERE id IN (:ids)")
+    suspend fun deleteByIds(ids: List<Int>)
 }

@@ -16,6 +16,7 @@ import androidx.core.view.GravityCompat
 import androidx.core.widget.NestedScrollView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -126,8 +127,13 @@ class MainActivity : AppCompatActivity() {
 
         initCartDrawer()
 
-        KtorServer.startServer(context = applicationContext)
-        cartViewModel.viewModelScope.launch {
+//        KtorServer.startServer(context = applicationContext)
+//        cartViewModel.viewModelScope.launch {
+//            cartViewModel.loadSavedCart()
+//        }
+
+        lifecycleScope.launch {
+            KtorServer.startServerAndWait(applicationContext)   // ← новий виклик
             cartViewModel.loadSavedCart()
         }
     }
