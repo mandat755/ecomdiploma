@@ -31,6 +31,7 @@ import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 object KtorServer {
 
@@ -71,6 +72,22 @@ object KtorServer {
         // Реально чекаємо, поки сервер прив'яже порт
         serverStarted.await()
     }
+
+//    suspend fun startServerAndWait(context: Context) {
+//        if (server != null) return
+//
+//        withContext(Dispatchers.IO) {
+//            server = embeddedServer(
+//                Netty,
+//                host = "0.0.0.0",
+//                port = 8081
+//            ) {
+//                // module(context)
+//            }
+//
+//            server?.start(wait = false)
+//        }
+//    }
 
     fun stopServer() {
         server?.stop(1000, 2000)

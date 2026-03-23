@@ -44,6 +44,7 @@ import com.google.firebase.functions.FirebaseFunctions
 import com.stripe.android.PaymentConfiguration
 import com.stripe.android.paymentsheet.PaymentSheet
 import com.stripe.android.paymentsheet.PaymentSheetResult
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -133,7 +134,10 @@ class MainActivity : AppCompatActivity() {
 //        }
 
         lifecycleScope.launch {
-            KtorServer.startServerAndWait(applicationContext)   // ← новий виклик
+            launch(Dispatchers.IO) {
+                KtorServer.startServerAndWait(applicationContext)
+            }
+
             cartViewModel.loadSavedCart()
         }
     }
@@ -298,7 +302,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        KtorServer.stopServer()
+        //KtorServer.stopServer()
         super.onDestroy()
     }
 }

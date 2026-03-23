@@ -38,7 +38,7 @@ class CartViewModel(
     suspend fun loadSavedCart() {
         try {
             // Додаємо затримку перед запитом, щоб сервер встиг стартувати
-            delay(1200) // Затримка 2 секунди, можете підлаштувати
+            delay(100) // Затримка 2 секунди, можете підлаштувати
             val savedCart = getSavedProdUseCase.getProducts()
             _cartItems.value = savedCart // присвоєння значення в LiveData
         } catch (e: Exception) {
