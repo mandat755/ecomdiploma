@@ -21,7 +21,7 @@ abstract class ProductsDB : RoomDatabase() {
                 context.applicationContext,
                 ProductsDB::class.java,
                 "app_database.db"
-            ).createFromAsset("app_database.db") // Переконайтесь, що файл існує в assets
+            ).createFromAsset("app_database.db")
                 .build()
         }
     }

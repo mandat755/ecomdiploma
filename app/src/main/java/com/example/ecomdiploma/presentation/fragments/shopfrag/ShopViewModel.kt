@@ -10,18 +10,16 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ShopViewModel(private val getAllProductUseCase: GetAllProductUseCase): ViewModel() {
-
-    private val _allProductModelList = MutableLiveData<List<ProductModel>>()           //ProductModel
-    val allProductModelList: MutableLiveData<List<ProductModel>> = _allProductModelList     //ProductModel
+    private val _allProductModelList = MutableLiveData<List<ProductModel>>()
+    val allProductModelList: MutableLiveData<List<ProductModel>> = _allProductModelList
 
     fun getAllProduct() {
-        Log.d("MyRoomLog", "Тут 3")
         viewModelScope.launch {
             try {
                 delay(10)
                 _allProductModelList.postValue(getAllProductUseCase.getAllProducts())
             } catch (e: Exception) {
-                Log.e("ShopViewModel", "Помилка повернення усіх продуктів", e)
+                Log.e("ShopViewModel", "Error", e)
             }
         }
     }

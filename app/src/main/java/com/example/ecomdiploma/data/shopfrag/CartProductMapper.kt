@@ -1,9 +1,6 @@
 package com.example.ecomdiploma.data.shopfrag
 
-import androidx.room.PrimaryKey
-import com.example.ecomdiploma.data.productdatabase.ProductEntity
 import com.example.ecomdiploma.data.productdatabase.SimpleProductEntity
-import com.example.ecomdiploma.domain.shopfrag.ProductModel
 import com.example.ecomdiploma.domain.shopfrag.SimpleProductModel
 
 object CartProductMapper {

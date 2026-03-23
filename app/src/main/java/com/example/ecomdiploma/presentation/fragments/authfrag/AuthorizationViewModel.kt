@@ -3,11 +3,9 @@ package com.example.ecomdiploma.presentation.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.AuthCredential
-import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 
 class AuthorizationViewModel : ViewModel() {
 
@@ -20,7 +18,6 @@ class AuthorizationViewModel : ViewModel() {
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     init {
-        //перевірка, чи користувач вже авторизований
         _user.value = mAuth.currentUser
     }
 

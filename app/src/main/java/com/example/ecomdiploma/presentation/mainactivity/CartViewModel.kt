@@ -1,7 +1,6 @@
 package com.example.ecomdiploma.presentation.viewmodel
 
 import android.app.Application
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -11,8 +10,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.ecomdiploma.domain.shopfrag.AddProductToCartUseCase
 import com.example.ecomdiploma.domain.shopfrag.GetSavedProdUseCase
 import com.example.ecomdiploma.domain.shopfrag.SimpleProductModel
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -29,40 +26,29 @@ class CartViewModel(
         items.sumOf { it.price.replace("$", "").replace(",", ".").toDoubleOrNull() ?: 0.0 }
     }
 
-    private val sharedPrefs = application.getSharedPreferences("cart_prefs", Context.MODE_PRIVATE)
-    private val KEY_CART_ITEMS = "cart_items"
-
-    // Видалено виклик loadSavedCart() з init
-
-    // Функція, яку можна викликати пізніше, коли потрібно завантажити корзину
     suspend fun loadSavedCart() {
         try {
-            // Додаємо затримку перед запитом, щоб сервер встиг стартувати
-            delay(100) // Затримка 2 секунди, можете підлаштувати
+            delay(100)
             val savedCart = getSavedProdUseCase.getProducts()
-            _cartItems.value = savedCart // присвоєння значення в LiveData
+            _cartItems.value = savedCart
         } catch (e: Exception) {
-            Log.e("CartViewModel", "Помилка завантаження продуктів", e)
+            Log.e("CartViewModel", "Error", e)
         }
     }
 
     fun addItemToCart(product: SimpleProductModel) {
         val current = _cartItems.value.orEmpty()
         if (current.any { it.name == product.name && it.size == product.size && it.imageResId == product.imageResId }) {
-            Log.d("Dipp2", "1")
             return
         }
-        Log.d("Dipp2", "2")
         val updated = current + product
         _cartItems.value = updated
-        Log.d("Dipp2", "3 - ${_cartItems.value}")
         saveCartItemsUpdated(updated)
     }
 
     fun removeItem(product: SimpleProductModel) {
         val updated = _cartItems.value.orEmpty().filterNot { it.name == product.name && it.size == product.size && it.imageResId == product.imageResId }
         _cartItems.value = updated
-        Log.d("Mylogcartlohhh", "$updated")
         saveCartItemsUpdated(updated)
     }
 

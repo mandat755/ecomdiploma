@@ -10,6 +10,6 @@ class ShopViewModelFactory (private val getAllProductUseCase: GetAllProductUseCa
         if (modelClass.isAssignableFrom(ShopViewModel::class.java)) {
             return ShopViewModel(getAllProductUseCase) as T
         }
-        throw IllegalArgumentException("Невідомий ViewModel-клас")
+        throw IllegalArgumentException("Unknown ViewModel-class")
     }
 }

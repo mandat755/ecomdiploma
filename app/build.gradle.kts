@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
-    id("com.google.devtools.ksp")                  // ← ЗАМІНИЛИ kapt на ksp
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -39,9 +39,7 @@ android {
     }
 
     packagingOptions {
-        // Викидаємо файли io.netty.versions.properties
         exclude("META-INF/io.netty.versions.properties")
-        // Додаємо виключення для інших проблемних файлів
         exclude("META-INF/INDEX.LIST")
         exclude("META-INF/*.kotlin_module")
     }
@@ -54,7 +52,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 }
 
 dependencies {
-    // Основні AndroidX бібліотеки з version catalog (libs.versions.toml)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -72,8 +69,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragmentKtx)
     implementation(libs.androidx.navigation.uiKtx)
 
-    // ────────────────────────────────────────────────
-    // Firebase (завжди використовуй BOM + без версій)
+    // Firebase
     implementation(platform("com.google.firebase:firebase-bom:34.10.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
@@ -97,13 +93,13 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
 
-    // Room Database — ВИПРАВЛЕНО + оновлено до сумісної версії
+    // Room Database
     implementation("androidx.room:room-runtime:2.6.1")
-    ksp("androidx.room:room-compiler:2.6.1")           // ← замість kapt
+    ksp("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
 
-    // Ktor (перевір версії)
-    implementation("io.ktor:ktor-server-core-jvm:3.0.3")  // Перевірте сумісність з Kotlin 2.3.0
+    // Ktor
+    implementation("io.ktor:ktor-server-core-jvm:3.0.3")  
     implementation("io.ktor:ktor-server-netty-jvm:3.0.3")
     implementation("io.ktor:ktor-server-content-negotiation-jvm:3.0.3")
     implementation("io.ktor:ktor-serialization-gson-jvm:3.0.3")

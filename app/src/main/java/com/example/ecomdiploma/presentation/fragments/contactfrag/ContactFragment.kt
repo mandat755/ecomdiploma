@@ -1,7 +1,6 @@
 package com.example.ecomdiploma.presentation.fragments.contactfrag
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +43,6 @@ class ContactFragment : Fragment() {
 
         contactViewModel.emailStatus.observe(viewLifecycleOwner, { status ->
             Toast.makeText(requireContext(), "Sent.", Toast.LENGTH_SHORT).show()
-            Log.d("MyEmailJSLOG", "$status")
         })
     }
 

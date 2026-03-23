@@ -17,6 +17,6 @@ class CartViewModelFactory(
         if (modelClass.isAssignableFrom(CartViewModel::class.java)) {
             return CartViewModel(application, addProductToCartUseCase, getSavedProdUseCase) as T
         }
-        throw IllegalArgumentException("Невідомий ViewModel-клас")
+        throw IllegalArgumentException("Unknown ViewModel-class")
     }
 }

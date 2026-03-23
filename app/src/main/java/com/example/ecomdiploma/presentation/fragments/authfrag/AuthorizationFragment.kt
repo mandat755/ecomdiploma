@@ -47,7 +47,6 @@ class AuthorizationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //перевірка, чи користувач вже авторизований
         authorizationViewModel.user.observe(viewLifecycleOwner, Observer { user ->
             if (user != null) {
                 findNavController().navigate(R.id.action_authorizationFragment_to_MainFragment)
@@ -56,7 +55,7 @@ class AuthorizationFragment : Fragment() {
         })
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id)) //токен отриманий у Firebase Console
+            .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
 

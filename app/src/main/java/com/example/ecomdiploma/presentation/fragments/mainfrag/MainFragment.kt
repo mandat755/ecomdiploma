@@ -5,18 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.ecomdiploma.R
 import com.example.ecomdiploma.databinding.FragmentMainBinding
 import com.example.ecomdiploma.domain.shopfrag.ProductModel
-import com.example.ecomdiploma.presentation.viewmodel.AuthorizationViewModel
 
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
-
-    private val authorizationViewModel: AuthorizationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,11 +20,9 @@ class MainFragment : Fragment() {
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         setOnClickListenerForCard()
-
         binding.shopButton.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home_to_shopFragment)
         }
-
         binding.shopButton2.setOnClickListener {
             findNavController().navigate(R.id.action_nav_home_to_shopFragment)
         }

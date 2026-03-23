@@ -53,24 +53,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private val authorizationViewModel: AuthorizationViewModel by viewModels()
-    private val cartViewModel: CartViewModel by viewModels {
-        CartViewModelFactory(
-            addProductToCartUseCase = AddProductToCartUseCase(RetrofitClient.apiService), // Тут передається AddProductToCartUseCase
-            application = application,
-            getSavedProdUseCase = GetSavedProdUseCase(RetrofitClient.apiService)
-        )
-    }
-
-
-    private var cartBadge: BadgeDrawable? = null
-
-
     private lateinit var cartRecycler: RecyclerView
     private lateinit var tvTotalPrice: TextView
     private lateinit var tvEmptyCart: TextView
     private lateinit var btnPayNow: Button
     private var cartAdapter: CartAdapter? = null
+    private var cartBadge: BadgeDrawable? = null
+
+    private val authorizationViewModel: AuthorizationViewModel by viewModels()
+    private val cartViewModel: CartViewModel by viewModels {
+        CartViewModelFactory(
+            addProductToCartUseCase = AddProductToCartUseCase(RetrofitClient.apiService),
+            application = application,
+            getSavedProdUseCase = GetSavedProdUseCase(RetrofitClient.apiService)
+        )
+    }
 
 
     private lateinit var paymentSheet: PaymentSheet
@@ -81,21 +78,17 @@ class MainActivity : AppCompatActivity() {
             setContentView(it.root)
         }
 
-        //ініціалізація Stripe PaymentConfiguration з публічним ключем
         PaymentConfiguration.init(
             applicationContext,
             "pk_test_51T52AnCthbbMg3LTXJ46I3uCDPEAACjlx2RGnQ0MbMe8o56CpViClnh3jXCripuEZnH9mqbSpgOkKOskX9lFzlmP00qIUjQ3Ss"
         )
-
-        //ініціалізація PaymentSheet
         paymentSheet = PaymentSheet(this, ::onPaymentSheetResult)
-
 
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
 
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.END)
-        //отримуємо NavHostFragment за допомогою supportFragmentManager
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
         navController = navHostFragment.navController
         val topLevelDestinations = setOf(
@@ -128,16 +121,10 @@ class MainActivity : AppCompatActivity() {
 
         initCartDrawer()
 
-//        KtorServer.startServer(context = applicationContext)
-//        cartViewModel.viewModelScope.launch {
-//            cartViewModel.loadSavedCart()
-//        }
-
         lifecycleScope.launch {
             launch(Dispatchers.IO) {
                 KtorServer.startServerAndWait(applicationContext)
             }
-
             cartViewModel.loadSavedCart()
         }
     }
@@ -153,7 +140,7 @@ class MainActivity : AppCompatActivity() {
 
         cartAdapter = CartAdapter(emptyList()) { product ->
             cartViewModel.removeItem(product)
-            Toast.makeText(this, "Товар видалено", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Product deleted", Toast.LENGTH_SHORT).show()
         }
         cartRecycler.adapter = cartAdapter
 
@@ -184,8 +171,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initiatePayment() {
         val functions = FirebaseFunctions.getInstance()
-
-        // Передаємо суму в центах
         val data = hashMapOf("amount" to (cartViewModel.totalPrice.value?.times(100)?.toInt() ?: 0))
 
         functions
@@ -251,7 +236,6 @@ class MainActivity : AppCompatActivity() {
 
         val cartItem = menu?.findItem(R.id.cart_button) ?: return true
 
-        // Відв’язуємо старий бейдж
         cartBadge?.let { BadgeUtils.detachBadgeDrawable(it, binding.toolbar, cartItem.itemId) }
         cartBadge = null
 
@@ -299,10 +283,5 @@ class MainActivity : AppCompatActivity() {
             scrollView.scrollTo(0, scrollPosition)
         }
         logoImageView.invalidate()
-    }
-
-    override fun onDestroy() {
-        //KtorServer.stopServer()
-        super.onDestroy()
     }
 }
