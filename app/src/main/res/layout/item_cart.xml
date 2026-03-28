@@ -64,7 +64,6 @@
                 app:layout_constraintTop_toBottomOf="@id/prodPriceText"
                 app:layout_constraintStart_toEndOf="@id/prodImageView"/>
 
-            <!-- ... в твоєму item_cart_product.xml -->
             <TextView
                 android:id="@+id/textSizeValue"
                 android:layout_width="wrap_content"

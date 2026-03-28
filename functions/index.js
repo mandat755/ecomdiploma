@@ -11,36 +11,27 @@ const STRIPE_CURRENCY = defineString("STRIPE_CURRENCY", {
   default: "usd",
 });
 
-// Callable function: викликається з Android через FirebaseFunctions.getHttpsCallable(...)
 exports.createPaymentIntent = onCall(
     {
-    // 2nd gen options
       cors: true,
       secrets: [STRIPE_SECRET_KEY],
     },
     async (request) => {
-    // request.data — те, що прийде з клієнта
+
       const data = request.data || {};
 
-      // Мінімальна валідація
       const amount = Number(data.amount);
 
       if (!Number.isFinite(amount) || amount <= 0) {
         throw new HttpsError("invalid-argument", "amount має бути > 0 (у центах).");
       }
 
-      // (Опційно) якщо хочеш — можна вимагати авторизацію Firebase:
-      // if (!request.auth) {
-      //   throw new HttpsError("unauthenticated", "Потрібна авторизація користувача.");
-      // }
-
       try {
-      // Секрет дістаємо ТІЛЬКИ всередині функції
         const stripeSecret = STRIPE_SECRET_KEY.value();
         const stripe = require("stripe")(stripeSecret);
 
         const paymentIntent = await stripe.paymentIntents.create({
-          amount: Math.round(amount), // cents
+          amount: Math.round(amount),
           currency: STRIPE_CURRENCY.value(),
           automatic_payment_methods: {enabled: true},
         });

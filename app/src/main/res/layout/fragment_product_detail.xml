@@ -6,18 +6,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragments.prodfrag.ProductDetailFragment">
 
-    <!-- Весь вміст обертаємо в NestedScrollView -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/prodScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- ConstraintLayout всередині NestedScrollView -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!-- Image for the product -->
             <ImageView
                 android:id="@+id/productImage"
                 android:layout_width="wrap_content"
@@ -51,7 +48,6 @@
                 android:gravity="center"
                 android:layout_marginTop="16dp">
 
-                <!-- Add product image thumbnails here -->
                 <ImageView
                     android:id="@+id/imchain1"
                     android:layout_width="100dp"
@@ -86,7 +82,6 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="5dp"/>
 
-            <!-- Product Name -->
             <TextView
                 android:id="@+id/productName"
                 android:layout_width="wrap_content"
@@ -99,7 +94,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp"/>
 
-            <!-- Product Price -->
             <TextView
                 android:id="@+id/productPrice"
                 android:layout_width="wrap_content"
@@ -112,7 +106,6 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"/>
 
-            <!-- Size selector -->
             <Spinner
                 android:id="@+id/sizeSelector"
                 android:layout_width="wrap_content"
@@ -124,7 +117,6 @@
                 android:layout_marginStart="8dp"
                 style="@style/CustomSpinnerStyle"/>
 
-            <!-- Add to Cart button -->
             <Button
                 android:id="@+id/addToCartButton"
                 android:layout_width="300dp"
@@ -139,7 +131,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <!-- Product description -->
             <TextView
                 android:id="@+id/textproddet"
                 android:layout_width="wrap_content"

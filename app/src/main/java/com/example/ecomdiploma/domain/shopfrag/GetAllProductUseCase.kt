@@ -10,3 +10,5 @@ class GetAllProductUseCase(private val apiService: ApiService) {
             it.toModel() }
     }
 }
+
+

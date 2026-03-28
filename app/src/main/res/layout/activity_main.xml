@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Основний контент активності -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/const1"
         android:layout_width="match_parent"
@@ -14,7 +13,6 @@
         android:fitsSystemWindows="true"
         android:background="@color/background_color">
 
-        <!-- Тулбар з лого по центру та кнопками справа -->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -24,7 +22,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <!-- Лого по центру -->
             <ImageView
                 android:id="@+id/logo_image"
                 android:layout_width="wrap_content"
@@ -34,7 +31,6 @@
                 android:layout_alignParentTop="true"/>
         </androidx.appcompat.widget.Toolbar>
 
-        <!-- FragmentContainerView для навігації -->
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -46,7 +42,6 @@
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Дровер для меню -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
@@ -56,15 +51,6 @@
         app:menu="@menu/navigation_menu"
         app:theme="@style/CustomNavigationView"/>
 
-<!--    <com.google.android.material.navigation.NavigationView-->
-<!--        android:id="@+id/navigation_view_right"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_gravity="end"-->
-<!--    android:background="?android:attr/windowBackground"-->
-<!--    app:theme="@style/CustomNavigationView"/>-->
-
-
     <FrameLayout
         android:id="@+id/navigation_view_right"
         android:layout_width="match_parent"
@@ -72,12 +58,11 @@
         android:layout_gravity="end"
         android:background="@color/background_color">
 
-        <!-- Включаємо кастомний лейаут для правого дроверу -->
         <include
             android:id="@+id/custom_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            layout="@layout/custom_right_drawer_layout" /> <!-- Замініть на ваш кастомний layout -->
+            layout="@layout/custom_right_drawer_layout" />
     </FrameLayout>
 
 

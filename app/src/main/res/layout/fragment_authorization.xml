@@ -8,8 +8,6 @@
     android:background="@color/auth_background_color">
 
 
-
-    <!-- Роздільник -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gd1"
         android:layout_width="0dp"
@@ -17,7 +15,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.55"/>
 
-    <!-- Логотип -->
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="0dp"
@@ -28,7 +25,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/gd1"/>
 
-    <!-- Кнопка Google з логотипом -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/googleSignInButton"
 
